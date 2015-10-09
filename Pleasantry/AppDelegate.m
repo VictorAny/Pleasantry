@@ -7,6 +7,7 @@
 //
 
 #import "AppDelegate.h"
+#import "PleasantViewController.h"
 
 @interface AppDelegate ()
 
@@ -16,7 +17,20 @@
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    // Override point for customization after application launch.
+    /*
+     * Checks if user has already picked a name. 
+     * Moves to feed, rather than login
+     */
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    NSString *userName = [defaults objectForKey:@"name"];
+    if (userName) {
+        UIStoryboard *mainStoryBoard = [UIStoryboard storyboardWithName:@"Main" bundle:	nil];
+        PleasantViewController *pleasantVC = [mainStoryBoard instantiateViewControllerWithIdentifier:@"pleasantVC"];
+        [self.window setRootViewController:pleasantVC];
+    }else{
+        // Will start with viewControler as rootview (initial)
+    }
+
     return YES;
 }
 

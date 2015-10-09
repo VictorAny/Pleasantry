@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="7706" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="KGk-i7-Jjw" customClass="PleasantTableViewCell">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="350"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2Y1-Bn-AOi">
+                        <rect key="frame" x="24" y="317" width="126" height="21"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="21" id="4y1-uD-h9V"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="p6y-sb-3HG">
+                        <rect key="frame" x="254" y="313" width="56" height="30"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="30" id="mvw-DK-7Xg"/>
+                        </constraints>
+                        <state key="normal" title="Favorite">
+                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                        </state>
+                        <connections>
+                            <action selector="didFavorite:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="8Qa-eS-fhF"/>
+                        </connections>
+                    </button>
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="UqH-V8-e0F">
+                        <rect key="frame" x="15" y="15" width="290" height="290"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="290" id="WZ9-C9-ONj"/>
+                        </constraints>
+                    </imageView>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="UqH-V8-e0F" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="7" id="4bE-Cl-11M"/>
+                    <constraint firstItem="p6y-sb-3HG" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="246" id="5x8-sw-dXo"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="2Y1-Bn-AOi" secondAttribute="trailing" constant="162" id="66x-FT-dNg"/>
+                    <constraint firstItem="2Y1-Bn-AOi" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="16" id="8sr-V9-Adt"/>
+                    <constraint firstAttribute="bottomMargin" secondItem="2Y1-Bn-AOi" secondAttribute="bottom" constant="4" id="BrW-nQ-ZJa"/>
+                    <constraint firstAttribute="bottomMargin" secondItem="p6y-sb-3HG" secondAttribute="bottom" constant="-1" id="GYc-6q-hG6"/>
+                    <constraint firstAttribute="centerX" secondItem="UqH-V8-e0F" secondAttribute="centerX" id="WhF-Fe-YaK"/>
+                    <constraint firstItem="UqH-V8-e0F" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="7" id="lVR-gr-p5d"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="UqH-V8-e0F" secondAttribute="trailing" constant="7" id="yiR-eJ-QcG"/>
+                </constraints>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="favorite" destination="p6y-sb-3HG" id="7L4-CU-opO"/>
+                <outlet property="photoView" destination="UqH-V8-e0F" id="tMi-Nc-iUV"/>
+                <outlet property="title" destination="2Y1-Bn-AOi" id="AwJ-CU-jsM"/>
+            </connections>
+        </tableViewCell>
+    </objects>
+</document>

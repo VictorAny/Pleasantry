@@ -14,6 +14,17 @@
 		248B28631BC06F5100102A5F /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 248B28621BC06F5100102A5F /* Images.xcassets */; };
 		248B28661BC06F5100102A5F /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 248B28641BC06F5100102A5F /* LaunchScreen.xib */; };
 		248B28721BC06F5100102A5F /* PleasantryTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 248B28711BC06F5100102A5F /* PleasantryTests.m */; };
+		248B287C1BC070F500102A5F /* giphy.gif in Resources */ = {isa = PBXBuildFile; fileRef = 248B287B1BC070F500102A5F /* giphy.gif */; };
+		248B28831BC0756500102A5F /* cat.gif in Resources */ = {isa = PBXBuildFile; fileRef = 248B28821BC0756500102A5F /* cat.gif */; };
+		248B28851BC076C500102A5F /* cat450.gif in Resources */ = {isa = PBXBuildFile; fileRef = 248B28841BC076C500102A5F /* cat450.gif */; };
+		248B28871BC077A000102A5F /* cat400.gif in Resources */ = {isa = PBXBuildFile; fileRef = 248B28861BC077A000102A5F /* cat400.gif */; };
+		249783261BC0A53C0067CE6B /* PleasantViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 249783251BC0A53C0067CE6B /* PleasantViewController.m */; };
+		2497832A1BC0B6AB0067CE6B /* FlickrManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 249783291BC0B6AB0067CE6B /* FlickrManager.m */; };
+		249783301BC0CD5D0067CE6B /* FeedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2497832F1BC0CD5D0067CE6B /* FeedViewController.m */; };
+		249783341BC0F1360067CE6B /* PleasantTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 249783321BC0F1360067CE6B /* PleasantTableViewCell.m */; };
+		249783351BC0F1360067CE6B /* PleasantTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 249783331BC0F1360067CE6B /* PleasantTableViewCell.xib */; };
+		249783381BC232940067CE6B /* FavoritesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 249783371BC232940067CE6B /* FavoritesViewController.m */; };
+		2497833B1BC245BF0067CE6B /* Flick.m in Sources */ = {isa = PBXBuildFile; fileRef = 2497833A1BC245BF0067CE6B /* Flick.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -40,6 +51,23 @@
 		248B286B1BC06F5100102A5F /* PleasantryTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PleasantryTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		248B28701BC06F5100102A5F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		248B28711BC06F5100102A5F /* PleasantryTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PleasantryTests.m; sourceTree = "<group>"; };
+		248B287B1BC070F500102A5F /* giphy.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; name = giphy.gif; path = ../../../Downloads/giphy.gif; sourceTree = "<group>"; };
+		248B28821BC0756500102A5F /* cat.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = cat.gif; sourceTree = "<group>"; };
+		248B28841BC076C500102A5F /* cat450.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = cat450.gif; sourceTree = "<group>"; };
+		248B28861BC077A000102A5F /* cat400.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = cat400.gif; sourceTree = "<group>"; };
+		249783241BC0A53C0067CE6B /* PleasantViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PleasantViewController.h; sourceTree = "<group>"; };
+		249783251BC0A53C0067CE6B /* PleasantViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PleasantViewController.m; sourceTree = "<group>"; };
+		249783281BC0B6AB0067CE6B /* FlickrManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FlickrManager.h; path = ../FlickrManager.h; sourceTree = "<group>"; };
+		249783291BC0B6AB0067CE6B /* FlickrManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FlickrManager.m; path = ../FlickrManager.m; sourceTree = "<group>"; };
+		2497832E1BC0CD5D0067CE6B /* FeedViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FeedViewController.h; sourceTree = "<group>"; };
+		2497832F1BC0CD5D0067CE6B /* FeedViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FeedViewController.m; sourceTree = "<group>"; };
+		249783311BC0F1360067CE6B /* PleasantTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PleasantTableViewCell.h; sourceTree = "<group>"; };
+		249783321BC0F1360067CE6B /* PleasantTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PleasantTableViewCell.m; sourceTree = "<group>"; };
+		249783331BC0F1360067CE6B /* PleasantTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PleasantTableViewCell.xib; sourceTree = "<group>"; };
+		249783361BC232940067CE6B /* FavoritesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FavoritesViewController.h; sourceTree = "<group>"; };
+		249783371BC232940067CE6B /* FavoritesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FavoritesViewController.m; sourceTree = "<group>"; };
+		249783391BC245BF0067CE6B /* Flick.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Flick.h; sourceTree = "<group>"; };
+		2497833A1BC245BF0067CE6B /* Flick.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Flick.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -81,12 +109,12 @@
 		248B28541BC06F5100102A5F /* Pleasantry */ = {
 			isa = PBXGroup;
 			children = (
-				248B28591BC06F5100102A5F /* AppDelegate.h */,
-				248B285A1BC06F5100102A5F /* AppDelegate.m */,
-				248B285C1BC06F5100102A5F /* ViewController.h */,
-				248B285D1BC06F5100102A5F /* ViewController.m */,
+				24C207D31BC62E9D00659F86 /* View */,
+				24C207D21BC62E7B00659F86 /* Model */,
+				24C207D11BC62E3C00659F86 /* ViewController */,
 				248B285F1BC06F5100102A5F /* Main.storyboard */,
 				248B28621BC06F5100102A5F /* Images.xcassets */,
+				248B287D1BC0713700102A5F /* Images */,
 				248B28641BC06F5100102A5F /* LaunchScreen.xib */,
 				248B28551BC06F5100102A5F /* Supporting Files */,
 			);
@@ -117,6 +145,55 @@
 				248B28701BC06F5100102A5F /* Info.plist */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		248B287D1BC0713700102A5F /* Images */ = {
+			isa = PBXGroup;
+			children = (
+				248B28821BC0756500102A5F /* cat.gif */,
+				248B28841BC076C500102A5F /* cat450.gif */,
+				248B28861BC077A000102A5F /* cat400.gif */,
+				248B287B1BC070F500102A5F /* giphy.gif */,
+			);
+			name = Images;
+			sourceTree = "<group>";
+		};
+		24C207D11BC62E3C00659F86 /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				2497832F1BC0CD5D0067CE6B /* FeedViewController.m */,
+				2497832E1BC0CD5D0067CE6B /* FeedViewController.h */,
+				249783251BC0A53C0067CE6B /* PleasantViewController.m */,
+				249783241BC0A53C0067CE6B /* PleasantViewController.h */,
+				248B285D1BC06F5100102A5F /* ViewController.m */,
+				248B285C1BC06F5100102A5F /* ViewController.h */,
+				249783361BC232940067CE6B /* FavoritesViewController.h */,
+				249783371BC232940067CE6B /* FavoritesViewController.m */,
+			);
+			name = ViewController;
+			sourceTree = "<group>";
+		};
+		24C207D21BC62E7B00659F86 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				248B285A1BC06F5100102A5F /* AppDelegate.m */,
+				248B28591BC06F5100102A5F /* AppDelegate.h */,
+				249783291BC0B6AB0067CE6B /* FlickrManager.m */,
+				249783281BC0B6AB0067CE6B /* FlickrManager.h */,
+				2497833A1BC245BF0067CE6B /* Flick.m */,
+				249783391BC245BF0067CE6B /* Flick.h */,
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
+		24C207D31BC62E9D00659F86 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				249783331BC0F1360067CE6B /* PleasantTableViewCell.xib */,
+				249783311BC0F1360067CE6B /* PleasantTableViewCell.h */,
+				249783321BC0F1360067CE6B /* PleasantTableViewCell.m */,
+			);
+			name = View;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -200,8 +277,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				248B28611BC06F5100102A5F /* Main.storyboard in Resources */,
+				248B28831BC0756500102A5F /* cat.gif in Resources */,
 				248B28661BC06F5100102A5F /* LaunchScreen.xib in Resources */,
+				248B28871BC077A000102A5F /* cat400.gif in Resources */,
+				248B287C1BC070F500102A5F /* giphy.gif in Resources */,
+				249783351BC0F1360067CE6B /* PleasantTableViewCell.xib in Resources */,
 				248B28631BC06F5100102A5F /* Images.xcassets in Resources */,
+				248B28851BC076C500102A5F /* cat450.gif in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -219,9 +301,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2497833B1BC245BF0067CE6B /* Flick.m in Sources */,
 				248B285E1BC06F5100102A5F /* ViewController.m in Sources */,
 				248B285B1BC06F5100102A5F /* AppDelegate.m in Sources */,
+				2497832A1BC0B6AB0067CE6B /* FlickrManager.m in Sources */,
+				249783261BC0A53C0067CE6B /* PleasantViewController.m in Sources */,
+				249783301BC0CD5D0067CE6B /* FeedViewController.m in Sources */,
 				248B28581BC06F5100102A5F /* main.m in Sources */,
+				249783381BC232940067CE6B /* FavoritesViewController.m in Sources */,
+				249783341BC0F1360067CE6B /* PleasantTableViewCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -347,9 +435,12 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = Pleasantry/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Debug;
 		};
@@ -357,9 +448,12 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = Pleasantry/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Release;
 		};
@@ -416,6 +510,7 @@
 				248B28771BC06F5100102A5F /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		248B28781BC06F5100102A5F /* Build configuration list for PBXNativeTarget "PleasantryTests" */ = {
 			isa = XCConfigurationList;
@@ -424,6 +519,7 @@
 				248B287A1BC06F5100102A5F /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
