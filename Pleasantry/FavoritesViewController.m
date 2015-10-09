@@ -9,11 +9,12 @@
 #import "FavoritesViewController.h"
 #import "PleasantTableViewCell.h"
 
+static NSString *cellIdentifier = @"favoriteCell";
+
 @interface FavoritesViewController ()
 
 @property (weak, nonatomic) IBOutlet UITableView *favoritesTable;
-@property (weak) NSString *cellIdentifier;
-@property (weak) NSMutableArray *favorites;
+@property (strong, nonatomic) NSMutableArray *favorites;
 @end
 
 @implementation FavoritesViewController
@@ -22,14 +23,13 @@
     [super viewDidLoad];
     self.favoritesTable.dataSource = self;
     self.favoritesTable.delegate = self;
-    self.cellIdentifier = @"favoriteCell";
-    [self.favoritesTable registerNib:[UINib nibWithNibName:@"PleasantTableViewCell" bundle:nil] forCellReuseIdentifier:self.cellIdentifier];
+    [self.favoritesTable registerNib:[UINib nibWithNibName:@"PleasantTableViewCell" bundle:nil] forCellReuseIdentifier:cellIdentifier];
     self.favoritesTable.rowHeight = 350;
     self.favoritesTable.allowsSelection = NO;
 
     
 }
-
+// Loads favorites to be shown in table
 - (void)viewWillAppear:(BOOL)animated{
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     self.favorites = [defaults valueForKey:@"favorites"];
@@ -38,7 +38,7 @@
 
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-    PleasantTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:self.cellIdentifier forIndexPath:indexPath];
+    PleasantTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier forIndexPath:indexPath];
     NSDictionary *favoriteFlick = [self.favorites objectAtIndex:indexPath.row];
     cell.title.text = [favoriteFlick valueForKey:@"title"];
     NSString *url = [[self.favorites objectAtIndex:indexPath.row]valueForKey:@"data"];

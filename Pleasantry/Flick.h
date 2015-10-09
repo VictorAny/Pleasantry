@@ -12,6 +12,5 @@
 
 @property(nonatomic, strong) NSString *title;
 @property(nonatomic, strong) NSString *url;
-@property(nonatomic) bool isFavorite;
 
 @end

@@ -11,13 +11,4 @@
 
 @implementation Flick
 
-- (instancetype)init
-{
-    self = [super init];
-    if (self) {
-        self.isFavorite = NO;
-    }
-    return self;
-}
-
 @end

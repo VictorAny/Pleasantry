@@ -11,14 +11,16 @@
 #import "PleasantTableViewCell.h"
 #import "Flick.h"
 
+static NSString *cellIdentifier = @"pleasantCell";
+static NSString *favoritesIdentifier = @"favorites";
+
 @interface FeedViewController ()
 
 @property(nonatomic, strong)FlickrManager *flickrManager;
 @property (weak, nonatomic) IBOutlet UITableView *feedTable;
 @property (weak, nonatomic) IBOutlet UIImageView *indicatorSubView;
 @property (weak, nonatomic) IBOutlet UIActivityIndicatorView *spinner;
-@property (weak) NSString *cellIdentifier;
-@property (strong) NSMutableArray *favorites;
+@property (strong, nonatomic) NSMutableArray *favorites;
 @property (nonatomic, strong) NSArray *flicks;
 @property (nonatomic, strong) NSCache *imageCache;
 @property (nonatomic, strong)NSUserDefaults *defaults;
@@ -34,18 +36,22 @@
     _flickrManager = [[FlickrManager alloc]init];
     self.imageCache = [[NSCache alloc]init];
     self.defaults = [NSUserDefaults standardUserDefaults];
+    
     [self initializeViewsAndTableDependencies];
-    [self.feedTable registerNib:[UINib nibWithNibName:@"PleasantTableViewCell" bundle:nil] forCellReuseIdentifier:self.cellIdentifier];
+    [self.feedTable registerNib:[UINib nibWithNibName:@"PleasantTableViewCell" bundle:nil] forCellReuseIdentifier:cellIdentifier];
     [self.flickrManager getPleasantImagesFromFlickr:^(bool sucess, NSArray *photos, NSError *error) {
         if (error){
-            NSLog(@"Error");
+            NSLog(@"error, while retrieving pleasant photos");
         }else{
+            // Used to avoid retain cyle
+            __weak typeof (self) weakSelf = self;
           dispatch_async(dispatch_get_main_queue(), ^{
-              self.flicks = photos;
-              [self.feedTable reloadData];
-              [self.spinner stopAnimating];
-              self.indicatorSubView.hidden = YES;
-              self.spinner.hidden = YES;
+              __strong typeof (weakSelf) strongSelf = weakSelf;
+              strongSelf.flicks = photos;
+              [strongSelf.feedTable reloadData];
+              [strongSelf.spinner stopAnimating];
+              strongSelf.indicatorSubView.hidden = YES;
+              strongSelf.spinner.hidden = YES;
           });
         }
     }];
@@ -53,15 +59,14 @@
 
 - (void)didFavoriteFlick:(Flick *)aFlickObject{
     NSLog(@"user favorited %@", aFlickObject.title);
-    aFlickObject.isFavorite = YES;
     NSDictionary *favoriteFlick = @{@"title": aFlickObject.title,
                                     @"data" : aFlickObject.url
                                     };
-    NSMutableArray *defaultsArray = [[self.defaults valueForKey:@"favorites"]mutableCopy];
+    NSMutableArray *defaultsArray = [[self.defaults valueForKey:favoritesIdentifier]mutableCopy];
     [defaultsArray addObject:favoriteFlick];
-    [self.defaults setObject:defaultsArray forKey:@"favorites"];
+    [self.defaults setObject:defaultsArray forKey:favoritesIdentifier];
     [self.defaults synchronize];
-    self.favorites = [self.defaults valueForKey:@"favorites"];
+    self.favorites = [self.defaults valueForKey:favoritesIdentifier];
     [self.feedTable reloadData];
 }
 
@@ -78,7 +83,6 @@
     self.feedTable.delegate = self;
     self.feedTable.rowHeight = 350;
     self.feedTable.allowsSelection = NO;
-    self.cellIdentifier = @"pleasantCell";
 }
 
 - (void)dealloc{
@@ -86,7 +90,7 @@
 }
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-    PleasantTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:self.cellIdentifier forIndexPath:indexPath];
+    PleasantTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier forIndexPath:indexPath];
     cell.delegate = self;
     Flick *flickr = [self.flicks objectAtIndex:indexPath.row];
     NSString *url = flickr.url;
@@ -103,21 +107,23 @@
             cell.favorite.enabled = YES;
         }
     }
-//    cell.favorite.enabled = !(flickr.isFavorite);
     if (cachedThumbnailPic){
         dispatch_async(dispatch_get_main_queue(), ^{
             cell.photoView.image = cachedThumbnailPic;
         });
     }else{
-        
+        // Asynchronously loads images into tableview in order to keep scrolling smooth
+        // Weakself used to avoid retain cycle
+        __weak typeof (self) weakSelf = self;
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
         UIImage* thumbnail = [[UIImage alloc]initWithData:[NSData dataWithContentsOfURL:imageurl]];
         if (thumbnail) {
                        dispatch_async(dispatch_get_main_queue(), ^{
-                           if ([[self.feedTable indexPathsForVisibleRows] containsObject:indexPath]) {
-                               PleasantTableViewCell *correctCell = (PleasantTableViewCell *)[self.feedTable cellForRowAtIndexPath:indexPath];
+                           __strong typeof (weakSelf) strongself = weakSelf;
+                           if ([[strongself.feedTable indexPathsForVisibleRows] containsObject:indexPath]) {
+                               PleasantTableViewCell *correctCell = (PleasantTableViewCell *)[strongself.feedTable cellForRowAtIndexPath:indexPath];
                                correctCell.photoView.image = thumbnail;
-                               [self.imageCache setObject:thumbnail forKey:flickr.title];
+                               [strongself.imageCache setObject:thumbnail forKey:flickr.title];
                                [correctCell setNeedsLayout];
                            }
                        });
@@ -133,10 +139,10 @@
 }
 
 - (void)getFavorites{
-    self.favorites = [self.defaults valueForKey:@"favorites"];
+    self.favorites = [self.defaults valueForKey:favoritesIdentifier];
     if (!self.favorites){
         self.favorites = [NSMutableArray array];
-        [self.defaults setObject:self.favorites forKey:@"favorites"];
+        [self.defaults setObject:self.favorites forKey:favoritesIdentifier];
         [self.defaults synchronize];
     }
 }

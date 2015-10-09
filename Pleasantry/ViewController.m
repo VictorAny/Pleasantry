@@ -27,12 +27,12 @@
     self.userText.layer.borderColor = [[UIColor blackColor]CGColor];
 }
 
-
+// Saves entered name, and moves to the feed view controller
 - (IBAction)userDidSubmit:(id)sender {
     if (![self.userText.text isEqualToString:@""]){
         NSString *userName = self.userText.text;
         PleasantViewController *pleasantVC = [self.storyboard instantiateViewControllerWithIdentifier:@"pleasantVC"];
-        NSLog(@"%@", self.userText.text);
+        NSLog(@"user is %@", self.userText.text);
         pleasantVC.userName = userName;
         NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
         [userDefaults setObject:userName forKey:@"name"];

@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 
 @interface FlickrManager : NSObject
-/*
+/**
  * Retrieves pleasant images from Flickr API in an array
  */
 - (void)getPleasantImagesFromFlickr:(void (^)(bool sucess, NSArray *photos, NSError *error))completionHandler;

@@ -14,9 +14,6 @@
 		248B28631BC06F5100102A5F /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 248B28621BC06F5100102A5F /* Images.xcassets */; };
 		248B28661BC06F5100102A5F /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 248B28641BC06F5100102A5F /* LaunchScreen.xib */; };
 		248B28721BC06F5100102A5F /* PleasantryTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 248B28711BC06F5100102A5F /* PleasantryTests.m */; };
-		248B287C1BC070F500102A5F /* giphy.gif in Resources */ = {isa = PBXBuildFile; fileRef = 248B287B1BC070F500102A5F /* giphy.gif */; };
-		248B28831BC0756500102A5F /* cat.gif in Resources */ = {isa = PBXBuildFile; fileRef = 248B28821BC0756500102A5F /* cat.gif */; };
-		248B28851BC076C500102A5F /* cat450.gif in Resources */ = {isa = PBXBuildFile; fileRef = 248B28841BC076C500102A5F /* cat450.gif */; };
 		248B28871BC077A000102A5F /* cat400.gif in Resources */ = {isa = PBXBuildFile; fileRef = 248B28861BC077A000102A5F /* cat400.gif */; };
 		249783261BC0A53C0067CE6B /* PleasantViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 249783251BC0A53C0067CE6B /* PleasantViewController.m */; };
 		2497832A1BC0B6AB0067CE6B /* FlickrManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 249783291BC0B6AB0067CE6B /* FlickrManager.m */; };
@@ -51,9 +48,6 @@
 		248B286B1BC06F5100102A5F /* PleasantryTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PleasantryTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		248B28701BC06F5100102A5F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		248B28711BC06F5100102A5F /* PleasantryTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PleasantryTests.m; sourceTree = "<group>"; };
-		248B287B1BC070F500102A5F /* giphy.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; name = giphy.gif; path = ../../../Downloads/giphy.gif; sourceTree = "<group>"; };
-		248B28821BC0756500102A5F /* cat.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = cat.gif; sourceTree = "<group>"; };
-		248B28841BC076C500102A5F /* cat450.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = cat450.gif; sourceTree = "<group>"; };
 		248B28861BC077A000102A5F /* cat400.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = cat400.gif; sourceTree = "<group>"; };
 		249783241BC0A53C0067CE6B /* PleasantViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PleasantViewController.h; sourceTree = "<group>"; };
 		249783251BC0A53C0067CE6B /* PleasantViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PleasantViewController.m; sourceTree = "<group>"; };
@@ -150,10 +144,7 @@
 		248B287D1BC0713700102A5F /* Images */ = {
 			isa = PBXGroup;
 			children = (
-				248B28821BC0756500102A5F /* cat.gif */,
-				248B28841BC076C500102A5F /* cat450.gif */,
 				248B28861BC077A000102A5F /* cat400.gif */,
-				248B287B1BC070F500102A5F /* giphy.gif */,
 			);
 			name = Images;
 			sourceTree = "<group>";
@@ -277,13 +268,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				248B28611BC06F5100102A5F /* Main.storyboard in Resources */,
-				248B28831BC0756500102A5F /* cat.gif in Resources */,
 				248B28661BC06F5100102A5F /* LaunchScreen.xib in Resources */,
 				248B28871BC077A000102A5F /* cat400.gif in Resources */,
-				248B287C1BC070F500102A5F /* giphy.gif in Resources */,
 				249783351BC0F1360067CE6B /* PleasantTableViewCell.xib in Resources */,
 				248B28631BC06F5100102A5F /* Images.xcassets in Resources */,
-				248B28851BC076C500102A5F /* cat450.gif in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
