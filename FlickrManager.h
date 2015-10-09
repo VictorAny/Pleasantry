@@ -10,7 +10,7 @@
 
 @interface FlickrManager : NSObject
 /**
- * Retrieves pleasant images from Flickr API in an array
+ * Retrieves pleasant images from Flickr API
  */
 - (void)getPleasantImagesFromFlickr:(void (^)(bool sucess, NSArray *photos, NSError *error))completionHandler;
 

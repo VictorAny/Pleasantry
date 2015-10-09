@@ -9,10 +9,11 @@
 #import "FlickrManager.h"
 #import "Flick.h"
 
+// API key is required for app to perform correctly. I left mine hardcoded after speaking to rebecca about it. Feel free to use yours!"
 static NSString *APIKey = @"01b753d14c67fcc7fd6a5e4ee0fbfcc0";
 static NSString *BaseFlickrURL = @"https://api.flickr.com/services/rest/?";
 static NSString *BasePhotosMethodFlickrURL = @"method=flickr.photos.search";
-static NSString *SearchText = @"cute cats";
+static NSString *SearchText = @"cute+cats";
 static NSString *format = @"json";
 static NSString *per_page = @"10";
 
@@ -29,10 +30,8 @@ static NSString *per_page = @"10";
 - (void)getPleasantImagesFromFlickr:(void (^)(bool sucess, NSArray *photos, NSError *error))completionHandler{
     [self searchFlickrForPleasantImagesWithCompletion:^(bool sucess, NSDictionary *parsedData, NSError *error) {
         if (error){
-            NSLog(@"%@", error);
             completionHandler(NO, nil, error);
         }else{
-            NSLog(@"%@", parsedData);
             NSArray *photos = [self parseFlickResponse:parsedData];
             NSArray *flickObjects = [self parsePhotosForFlicks:photos];
             completionHandler(YES, flickObjects, nil);
@@ -45,7 +44,6 @@ static NSString *per_page = @"10";
 - (NSString *)getFlickrSearchURL{
     NSString *APICallString = [NSString stringWithFormat:@"%@%@", BaseFlickrURL, BasePhotosMethodFlickrURL];
     NSString *returnString =  [NSString stringWithFormat:@"%@&api_key=%@&text=%@&extras=url_m&format=%@&per_page=%@&nojsoncallback=1", APICallString, APIKey, SearchText, format, per_page];
-//    NSLog(@"%@", returnString);
     return returnString;
 }
 

@@ -36,6 +36,7 @@ static NSString *cellIdentifier = @"favoriteCell";
     [self.favoritesTable reloadData];
 }
 
+#pragma mark - Tableview Delegates
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     PleasantTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier forIndexPath:indexPath];

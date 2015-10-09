@@ -20,6 +20,7 @@ static NSString *favoritesIdentifier = @"favorites";
 @property (weak, nonatomic) IBOutlet UITableView *feedTable;
 @property (weak, nonatomic) IBOutlet UIImageView *indicatorSubView;
 @property (weak, nonatomic) IBOutlet UIActivityIndicatorView *spinner;
+@property (strong, nonatomic) UIRefreshControl *refreshControl;
 @property (strong, nonatomic) NSMutableArray *favorites;
 @property (nonatomic, strong) NSArray *flicks;
 @property (nonatomic, strong) NSCache *imageCache;
@@ -34,9 +35,10 @@ static NSString *favoritesIdentifier = @"favorites";
 - (void)viewDidLoad {
     [super viewDidLoad];
     _flickrManager = [[FlickrManager alloc]init];
+    // will be used to cache images
     self.imageCache = [[NSCache alloc]init];
     self.defaults = [NSUserDefaults standardUserDefaults];
-    
+    [self setUpRefreshControl];
     [self initializeViewsAndTableDependencies];
     [self.feedTable registerNib:[UINib nibWithNibName:@"PleasantTableViewCell" bundle:nil] forCellReuseIdentifier:cellIdentifier];
     [self.flickrManager getPleasantImagesFromFlickr:^(bool sucess, NSArray *photos, NSError *error) {
@@ -57,20 +59,8 @@ static NSString *favoritesIdentifier = @"favorites";
     }];
 }
 
-- (void)didFavoriteFlick:(Flick *)aFlickObject{
-    NSLog(@"user favorited %@", aFlickObject.title);
-    NSDictionary *favoriteFlick = @{@"title": aFlickObject.title,
-                                    @"data" : aFlickObject.url
-                                    };
-    NSMutableArray *defaultsArray = [[self.defaults valueForKey:favoritesIdentifier]mutableCopy];
-    [defaultsArray addObject:favoriteFlick];
-    [self.defaults setObject:defaultsArray forKey:favoritesIdentifier];
-    [self.defaults synchronize];
-    self.favorites = [self.defaults valueForKey:favoritesIdentifier];
-    [self.feedTable reloadData];
-}
-
 - (void)viewWillAppear:(BOOL)animated{
+    // reloads data with favorites
     [self getFavorites];
     [self.feedTable reloadData];
 }
@@ -85,9 +75,50 @@ static NSString *favoritesIdentifier = @"favorites";
     self.feedTable.allowsSelection = NO;
 }
 
+
+#pragma mark - PleasantViewCellDelegate
+
+- (void)didFavoriteFlick:(Flick *)aFlickObject{
+    // Creates dictionary with flick information and stores it.
+    // Reinitializes favorites array to be up to date with persistent model.
+    NSLog(@"user favorited %@", aFlickObject.title);
+    NSDictionary *favoriteFlick = @{@"title": aFlickObject.title,
+                                    @"data" : aFlickObject.url
+                                    };
+    NSMutableArray *defaultsArray = [[self.defaults valueForKey:favoritesIdentifier]mutableCopy];
+    [defaultsArray addObject:favoriteFlick];
+    [self.defaults setObject:defaultsArray forKey:favoritesIdentifier];
+    [self.defaults synchronize];
+    self.favorites = [self.defaults valueForKey:favoritesIdentifier];
+    [self.feedTable reloadData];
+}
+
+#pragma mark - RefreshControl
+
+- (void)setUpRefreshControl{
+    self.refreshControl = [[UIRefreshControl alloc]init];
+    [self.feedTable addSubview:self.refreshControl];
+    [self.refreshControl addTarget:self action:@selector(getNewPleasantImages) forControlEvents:UIControlEventValueChanged];
+}
+
+-(void)getNewPleasantImages{
+    [self.flickrManager getPleasantImagesFromFlickr:^(bool sucess, NSArray *photos, NSError *error) {
+        if (error){
+            NSLog(@"error, while retrieving pleasant photos");
+        }else{
+            self.flicks = photos;
+            [self.feedTable reloadData];
+            NSLog(@"user did reload table");
+            }
+        [self.refreshControl endRefreshing];
+    }];
+}
+
 - (void)dealloc{
     [self.defaults synchronize];
 }
+
+#pragma mark - Tableview delegates
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     PleasantTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier forIndexPath:indexPath];
@@ -95,7 +126,6 @@ static NSString *favoritesIdentifier = @"favorites";
     Flick *flickr = [self.flicks objectAtIndex:indexPath.row];
     NSString *url = flickr.url;
     NSURL *imageurl = [NSURL URLWithString:url];
-    UIImage *cachedThumbnailPic = [self.imageCache objectForKey:flickr.title];
     cell.title.text = flickr.title;
     cell.flickObject = flickr;
     for (NSDictionary *object in self.favorites){
@@ -107,6 +137,8 @@ static NSString *favoritesIdentifier = @"favorites";
             cell.favorite.enabled = YES;
         }
     }
+    // Checks if image has already been cached. If not, it creates and caches it.
+    UIImage *cachedThumbnailPic = [self.imageCache objectForKey:flickr.title];
     if (cachedThumbnailPic){
         dispatch_async(dispatch_get_main_queue(), ^{
             cell.photoView.image = cachedThumbnailPic;
@@ -137,8 +169,10 @@ static NSString *favoritesIdentifier = @"favorites";
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     return [self.flicks count];
 }
+#pragma mark - Helpers
 
 - (void)getFavorites{
+    // returns favorites from user defaults
     self.favorites = [self.defaults valueForKey:favoritesIdentifier];
     if (!self.favorites){
         self.favorites = [NSMutableArray array];

@@ -22,6 +22,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.errorLabel.text = @"";
+    self.userText.delegate = self;
     [self loadPleasantBackgroundGIF];
     self.submitButton.layer.borderColor = [[UIColor blackColor]CGColor];
     self.userText.layer.borderColor = [[UIColor blackColor]CGColor];
@@ -52,7 +53,12 @@
    
 }
 
+#pragma mark - TextField Delegates
 
+-(BOOL)textFieldShouldReturn:(UITextField *)textField{
+    [self.userText resignFirstResponder];
+    return YES;
+}
 
 
 @end
